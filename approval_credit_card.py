@@ -49,22 +49,6 @@ df['MaritalStatus'] = df['MaritalStatus'].replace({'SINGLE': 1, 'MARRIED': 2, 'D
 x = df.drop('CREDIT_SCORE', axis=1)
 y = df['CREDIT_SCORE']
 
-# print("x column names: ", x.columns)
-# print("x cols shape ", x.shape)
-# print("y shape ", y.shape)
-
-# correlation_matrix = df.corr()
-#
-# sns.heatmap(correlation_matrix, annot = True)
-#
-# plt.title("Correlation matrix for Numeric Features")
-#
-# plt.xlabel("Movie features")
-#
-# plt.ylabel("Movie features")
-#
-# plt.show()
-
 # x = pd.get_dummies(x, drop_first=True)
 
 # Initialize LabelEncoder and OneHotEncoder
