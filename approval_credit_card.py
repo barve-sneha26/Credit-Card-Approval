@@ -32,16 +32,7 @@ df = df.drop('ID', axis=1)
 # print("Column names: ", df.columns)
 # print("df.shape: ", df.shape)
 
-
-# df["Gender"] = pd.get_dummies(df["Gender"])
-# df["MaritalSatus"] = pd.get_dummies(df["MaritalStatus"])
-
 # Handling Categorical Data
-# label_encoder = LabelEncoder() # Initialize LabelEncoder
-# for col in df.columns:
-#     if df[col].dtype == 'object':
-#         df[col] = label_encoder.fit_transform(df[col])
-
 df['Gender'] = df['Gender'].replace({'M': 1, 'F': 2})
 df['MaritalStatus'] = df['MaritalStatus'].replace({'SINGLE': 1, 'MARRIED': 2, 'DIVORCED': 3, 'WIDOWED': 4})
 
@@ -49,20 +40,9 @@ df['MaritalStatus'] = df['MaritalStatus'].replace({'SINGLE': 1, 'MARRIED': 2, 'D
 x = df.drop('CREDIT_SCORE', axis=1)
 y = df['CREDIT_SCORE']
 
-# x = pd.get_dummies(x, drop_first=True)
-
-# Initialize LabelEncoder and OneHotEncoder
-# label_encoder = LabelEncoder()
-# one_hot_encoder = OneHotEncoder()
-
-# Fit and transform the encoder on the categorical column
-# x = one_hot_encoder.fit_transform(x[["Gender", "MaritalStatus"]])
-print(x.columns)
-
 # Feature Scaling
 mas = MaxAbsScaler()
 x_scaled = mas.fit_transform(x)
-
 
 # Split the data into training and testing sets
 x_train, x_test, y_train, y_test = train_test_split(x_scaled, y, test_size=0.2, random_state=123)
@@ -130,17 +110,6 @@ print(sorted_list)
 
 with open("rf.model", "wb") as f:
     pickle.dump(rf_model, f)
-
-
-# d = [[1, 25, 2, 70000, 2, 3]]
-#
-# res = rf_model.predict(d)
-# res2 = dt_model.predict(d)
-# res3 = gbc_model.predict(d)
-# print("Result RF: ", res)
-# print("Result DT: ", res2)
-# print("Result GBC: ", res3)
-
 
 with open("gbc.model", "wb") as f:
     pickle.dump(gbc_model, f)
